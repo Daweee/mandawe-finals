@@ -1,3 +1,14 @@
+.empty-message {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 30vh;
+}
+
+.empty-message p {
+  margin-bottom: 20px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
