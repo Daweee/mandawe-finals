@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid #8b5db7;
+  border-top: 1px solid #8b5db7;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+button.view-button {
+  background-color: #429871;
+}
+
+button.edit-button {
+  background-color: #398bb7;
+}
+
+button.delete-button {
+  background-color: #d4493e;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f7fc;
+}

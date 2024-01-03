@@ -1,0 +1,39 @@
+<table>
+  <thead>
+    <th>Student ID</th>
+    <th>First Name</th>
+    <th>Middle Name</th>
+    <th>Last Name</th>
+    <th>College ID</th>
+    <th>Program ID</th>
+    <th>Student Year</th>
+    <th>
+      <button class="create-button" routerLink="create-student">Create</button>
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentList">
+      <td>{{ student.studid }}</td>
+      <td>{{ student.studfirstname }}</td>
+      <td>{{ student.studmidname }}</td>
+      <td>{{ student.studlastname }}</td>
+      <td>{{ student.studcollid }}</td>
+      <td>{{ student.studprogid }}</td>
+      <td>{{ student.studyear }}</td>
+      <td>
+        <button class="view-button" [routerLink]="['students', student.studid]">
+          View
+        </button>
+        <button
+          class="edit-button"
+          [routerLink]="['edit-student', student.studid]"
+        >
+          Edit
+        </button>
+        <button class="delete-button" (click)="deleteStudent(student.studid)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

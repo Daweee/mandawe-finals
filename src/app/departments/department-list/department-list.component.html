@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <th>Department ID</th>
+    <th>Department Name</th>
+    <th>Department Short Name</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let department of deptartmentList">
+      <td>{{ department.deptid }}</td>
+      <td>{{ department.deptfullname }}</td>
+      <td>{{ department.deptshortname }}</td>
+      <td>
+        <button
+          class="view-button"
+          [routerLink]="['departments', department.deptid]"
+        >
+          View
+        </button>
+        <button class="edit-button">Edit</button>
+        <button class="delete-button">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

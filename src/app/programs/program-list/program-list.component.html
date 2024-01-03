@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <th>Program ID</th>
+    <th>Program Name</th>
+    <th>Program Short Name</th>
+    <th>
+      <button class="create-button" routerLink="create-program">Create</button>
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let program of programList">
+      <td>{{ program.progid }}</td>
+      <td>{{ program.progfullname }}</td>
+      <td>{{ program.progshortname }}</td>
+      <td>
+        <button class="view-button" [routerLink]="['programs', program.progid]">
+          View
+        </button>
+        <button
+          class="edit-button"
+          [routerLink]="['edit-program', program.progid]"
+        >
+          Edit
+        </button>
+        <button class="delete-button" (click)="deleteProgram(program.progid)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

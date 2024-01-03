@@ -1,0 +1,67 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="progid">Program ID:</label>
+      <input
+        type="number"
+        id="progid"
+        placeholder="Program ID"
+        formControlName="progid"
+        [readonly]="isEditMode"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="progFullName">Program Name:</label>
+      <input
+        type="text"
+        id="progFullName"
+        placeholder="Program Full Name"
+        formControlName="progfullname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="progShortName">Program Short Name:</label>
+      <input
+        type="text"
+        id="progShortName"
+        placeholder="Program Short Name"
+        formControlName="progshortname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="progcollid">Program College ID:</label>
+      <select id="progcollid" name="progcollid" formControlName="progcollid">
+        <option *ngFor="let college of collegeList" [ngValue]="college.collid">
+          {{ college.collid }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="progdeptid">Program Department ID:</label>
+      <select
+        name="progdeptid"
+        id="progdeptid"
+        formControlName="progcolldeptid"
+      >
+        <option
+          *ngFor="let department of filteredDeptList"
+          [ngValue]="department.deptid"
+        >
+          {{ department.deptid }}
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <th>College ID</th>
+    <th>College Name</th>
+    <th>College Short Name</th>
+    <th>
+      <button class="create-button" routerLink="create-college">Create</button>
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let college of collegeList">
+      <td>{{ college.collid }}</td>
+      <td>{{ college.collfullname }}</td>
+      <td>{{ college.collshortname }}</td>
+      <td>
+        <button class="view-button" [routerLink]="['colleges', college.collid]">
+          View
+        </button>
+        <button
+          class="edit-button"
+          [routerLink]="['edit-college', college.collid]"
+        >
+          Edit
+        </button>
+        <button class="delete-button" (click)="deleteCollege(college.collid)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="collid">College ID:</label>
+      <input
+        type="number"
+        id="collid"
+        placeholder="College ID"
+        formControlName="collid"
+        [readonly]="isEditMode"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fullName">College Name:</label>
+      <input
+        type="text"
+        id="fullName"
+        placeholder="College Full Name"
+        formControlName="collfullname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="shortName">College Short Name:</label>
+      <input
+        type="text"
+        id="shortName"
+        placeholder="College Short Name"
+        formControlName="collshortname"
+      />
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>

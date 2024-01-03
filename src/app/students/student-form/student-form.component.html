@@ -1,0 +1,80 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="studid">Student ID:</label>
+      <input
+        type="number"
+        id="studid"
+        placeholder="Student ID"
+        formControlName="studid"
+        [readonly]="isEditMode"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="studfirstname">First Name:</label>
+      <input
+        type="text"
+        id="studfirstname"
+        placeholder="First Name"
+        formControlName="studfirstname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="studmidname">Middle Name:</label>
+      <input
+        type="text"
+        id="studmidname"
+        placeholder="Middle Name"
+        formControlName="studmidname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="studlastname">Last Name:</label>
+      <input
+        type="text"
+        id="studlastname"
+        placeholder="Last Name"
+        formControlName="studlastname"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="studcollid">Student College ID:</label>
+      <select id="studcollid" name="studcollid" formControlName="studcollid">
+        <option *ngFor="let college of collegeList" [ngValue]="college.collid">
+          {{ college.collid }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="studprogid">Student Program ID:</label>
+      <select name="studprogid" id="studprogid" formControlName="studprogid">
+        <option
+          *ngFor="let program of filteredProgList"
+          [ngValue]="program.progid"
+        >
+          {{ program.progid }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="studyear">Student Year:</label>
+      <select name="studyear" id="studyear" formControlName="studyear">
+        <option *ngFor="let year of studYear">{{ year }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>
