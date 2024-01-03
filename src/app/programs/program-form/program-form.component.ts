@@ -50,17 +50,6 @@ export class ProgramFormComponent implements OnInit {
       progcolldeptid: new FormControl(null, Validators.required),
     });
 
-    this.route.params.subscribe((params) => {
-      this.programId = +params['id'];
-
-      if (this.programId) {
-        this.isEditMode = true;
-        this.loadProgData(this.programId);
-      } else {
-        this.isEditMode = false;
-      }
-    });
-
     this.deptListInitialized = new Promise((resolve) => {
       this.colleges.getColleges().subscribe({
         next: (response) => {
@@ -81,6 +70,17 @@ export class ProgramFormComponent implements OnInit {
           resolve();
         },
       });
+    });
+
+    this.route.params.subscribe((params) => {
+      this.programId = +params['id'];
+
+      if (this.programId) {
+        this.isEditMode = true;
+        this.loadProgData(this.programId);
+      } else {
+        this.isEditMode = false;
+      }
     });
 
     this.form.get('progcollid').valueChanges.subscribe({

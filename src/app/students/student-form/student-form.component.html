@@ -54,10 +54,10 @@
       <label for="studprogid">Student Program ID:</label>
       <select name="studprogid" id="studprogid" formControlName="studprogid">
         <option
-          *ngFor="let program of filteredProgList"
-          [ngValue]="program.progid"
+          *ngFor="let department of filteredDeptList"
+          [ngValue]="department.deptid"
         >
-          {{ program.progid }}
+          {{ department.deptid }}
         </option>
       </select>
     </div>

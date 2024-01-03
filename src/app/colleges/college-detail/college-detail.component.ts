@@ -37,7 +37,6 @@ export class CollegeDetailComponent implements OnInit {
   }
 
   public getCollege(collid: number) {
-    console.log(collid);
     this.colleges.getCollege(collid).subscribe({
       next: (response) => {
         this.response = response;

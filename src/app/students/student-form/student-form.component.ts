@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CollegeService } from 'src/app/services/college.service';
 import { ProgramService } from 'src/app/services/program.service';
 import { StudentService } from 'src/app/services/student.service';
+import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
   selector: 'app-student-form',
@@ -17,8 +18,10 @@ export class StudentFormComponent implements OnInit {
   errorMessage: string = '';
   studentList: any[];
   collegeList: any[];
-  progList: any[];
-  filteredProgList: any[];
+  // progList: any[];
+  // filteredProgList: any[];
+  departmentList: any[];
+  filteredDeptList: any[];
   isEditMode: boolean = false;
   programId: number;
   studYear: number[] = [1, 2, 3, 4];
@@ -27,8 +30,9 @@ export class StudentFormComponent implements OnInit {
 
   constructor(
     private colleges: CollegeService,
-    private programs: ProgramService,
+    // private programs: ProgramService,
     private students: StudentService,
+    private departments: DepartmentService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -63,18 +67,21 @@ export class StudentFormComponent implements OnInit {
       this.colleges.getColleges().subscribe({
         next: (response) => {
           this.collegeList = response;
-          this.programs.getPrograms().subscribe({
+
+          this.departments.getDepartments().subscribe({
             next: (response) => {
-              this.progList = response;
+              this.departmentList = response;
               resolve();
             },
             error: (error) => {
               this.errorMessage = error;
+              resolve();
             },
           });
         },
         error: (error) => {
           this.errorMessage = error;
+          resolve();
         },
       });
     });
@@ -91,24 +98,22 @@ export class StudentFormComponent implements OnInit {
     const studid = this.route.snapshot.params['id'];
     if (studid) {
       this.isEditMode = true;
-      this.getStudentData(studid);
-    } else {
-      this.enableFormControls();
+      this.loadStudentData(studid);
     }
   }
 
   async formFilterInitialized(collid: number) {
     await this.progListInitialized;
-    this.filterProgList(collid);
+    this.filterDeptList(collid);
   }
 
-  private filterProgList(collid: number) {
+  private filterDeptList(collid: number) {
     if (collid) {
-      this.filteredProgList = this.progList.filter(
-        (prog) => prog.progcollid === collid
+      this.filteredDeptList = this.departmentList.filter(
+        (dept) => dept.deptcollid === collid
       );
     } else {
-      this.filteredProgList = this.progList;
+      this.filteredDeptList = this.departmentList;
     }
   }
 
@@ -139,10 +144,6 @@ export class StudentFormComponent implements OnInit {
     });
   }
 
-  private enableFormControls() {
-    this.form.enable();
-  }
-
   private editStudentData(studentData: any) {
     this.students.putStudent(studentData.studid, studentData).subscribe({
       next: (response) => {
@@ -164,11 +165,11 @@ export class StudentFormComponent implements OnInit {
     this.router.navigate(['students', studid]);
   }
 
-  private getStudentData(studid: number) {
+  private loadStudentData(studid: number) {
     this.students.getStudent(studid).subscribe({
       next: (response) => {
         this.form.patchValue(response);
-        this.enableFormControls();
+        this.formFilterInitialized(response.studcollid);
       },
       error: (error) => {
         this.errorMessage = error;

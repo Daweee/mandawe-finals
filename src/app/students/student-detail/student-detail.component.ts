@@ -31,7 +31,6 @@ export class StudentDetailComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (response) => {
         let studid = Number(response.get('studid'));
-        console.log(studid);
         this.getStudent(studid);
       },
       error: (error) => {
@@ -43,7 +42,6 @@ export class StudentDetailComponent implements OnInit {
   private getStudent(studid: number) {
     this.students.getStudent(studid).subscribe({
       next: (response) => {
-        console.log(response);
         this.response = response;
       },
       error: (error) => {
