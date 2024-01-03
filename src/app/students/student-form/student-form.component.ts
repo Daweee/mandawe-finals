@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CollegeService } from 'src/app/services/college.service';
-import { ProgramService } from 'src/app/services/program.service';
 import { StudentService } from 'src/app/services/student.service';
 import { DepartmentService } from 'src/app/services/department.service';
 
@@ -18,8 +17,6 @@ export class StudentFormComponent implements OnInit {
   errorMessage: string = '';
   studentList: any[];
   collegeList: any[];
-  // progList: any[];
-  // filteredProgList: any[];
   departmentList: any[];
   filteredDeptList: any[];
   isEditMode: boolean = false;
@@ -30,7 +27,6 @@ export class StudentFormComponent implements OnInit {
 
   constructor(
     private colleges: CollegeService,
-    // private programs: ProgramService,
     private students: StudentService,
     private departments: DepartmentService,
     private route: ActivatedRoute,
